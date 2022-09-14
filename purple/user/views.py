@@ -1,11 +1,12 @@
 from user.serializers import ChangePasswordSerializer
 from user.models import Account
 from rest_framework.generics import RetrieveUpdateAPIView, get_object_or_404
+from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from user.serializers import UserSerializer
+from user.serializers import UserSerializer,RegisterSerializer
 from rest_framework.views import APIView
-from  rest_framework import status
+from rest_framework import status
 
 
 
@@ -48,3 +49,8 @@ class UpdatePassowrd(APIView):
         
         return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
         
+
+class CreateAccountView(CreateAPIView):
+    queryset = Account.objects.all()
+    serializer_class = RegisterSerializer
+    
