@@ -6,6 +6,7 @@
 | Route | HTTP Verb	 | POST body	 | Description	 |
 | --- | --- | --- | --- |
 | /api/token | `POST` | { username: 'USERNAME', password:'PASSWORD' } | Token Üretir ve Giriş Yapar |
+| /api/token/refresh | `GET` | Empty | Token Yenileme |
 
 # User
 
