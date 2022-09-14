@@ -4,5 +4,11 @@ from purple.settings.base import *
 DEBUG = True
 ALLOWED_HOSTS = []
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+DATABASES = {
+      'default': {
+          'ENGINE': 'djongo',
+          'NAME': 'purple-meet'
+    }
+}

@@ -5,4 +5,15 @@ DEBUG = False
 ALLOWED_HOSTS = ["*"]
 
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+DATABASES = {
+      'default': {
+          'ENGINE': 'djongo',
+          'NAME': 'purple-meet',
+           'CLIENT': {
+                'host': '192.168.212.170',
+                'port': 27017,
+        }
+    }
+}

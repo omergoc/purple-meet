@@ -110,16 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-DATABASES = {
-      'default': {
-          'ENGINE': 'djongo',
-          'NAME': 'purple-meet',
-           'CLIENT': {
-                'host': '192.168.212.170',
-                'port': 27017,
-        }
-    }
-}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
