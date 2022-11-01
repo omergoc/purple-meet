@@ -1,13 +1,14 @@
-from user.serializers import ChangePasswordSerializer
-from user.models import Account
+from .throttles import RegisterThrottle
+from .serializers import ChangePasswordSerializer
+from .models import Account
 from rest_framework.generics import RetrieveUpdateAPIView, get_object_or_404
-from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from user.serializers import UserSerializer,RegisterSerializer
+from rest_framework.generics import CreateAPIView
+from .serializers import UserSerializer, RegisterSerializer
 from rest_framework.views import APIView
 from rest_framework import status
-
+from .permissions import NotAuthenticated
 
 
 class AccountView(RetrieveUpdateAPIView):
@@ -22,6 +23,7 @@ class AccountView(RetrieveUpdateAPIView):
 
     def perform_update(self, serializer):
         serializer.save(user = self.request.user) 
+
 
 class UpdatePassowrd(APIView):
     permission_classes = (IsAuthenticated,)
@@ -51,6 +53,7 @@ class UpdatePassowrd(APIView):
         
 
 class CreateAccountView(CreateAPIView):
-    queryset = Account.objects.all()
+    throttle_classes = [RegisterThrottle]
+    model = Account.objects.all()
     serializer_class = RegisterSerializer
-    
+    permission_classes = [NotAuthenticated]
